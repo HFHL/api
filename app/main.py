@@ -5,8 +5,8 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world(name):
-    return 'Welcome to the world!'+name
+def hello_world(name:str):
+    return 'Welcome to the world!',name
 
 
 
