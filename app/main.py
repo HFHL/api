@@ -9,7 +9,7 @@ def hello_world(name:str):
     return 'Welcome to the world!',name
 
 # 带参的登录，参数为name，返回name
-@app.route('/login/<name>')
+@app.route('/login/{name}')
 def login(name:str):
     return 'Hello, %s' % name
 
