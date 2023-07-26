@@ -8,7 +8,9 @@ app = Flask(__name__)
 def hello_world(name:str):
     return 'Welcome to the world!',name
 
-
+@app.post('/login')
+def login(name:str):
+    return 'Welcome to login!',name
 
 
 if __name__ == "__main__":
