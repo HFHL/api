@@ -1,18 +1,19 @@
 import os
 
-from flask import Flask
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/')
-def hello_world(name:str):
-    return 'Welcome to the world!',name
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
-# 带参的登录，参数为name，返回name
-@app.route('/login/{name}')
-def login(name:str):
-    return 'Hello, %s' % name
+@app.get("/hello/{name}")
+async def hello_name(name: str):
+    return {"Hello": name}
+
 
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
