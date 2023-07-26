@@ -8,9 +8,10 @@ app = Flask(__name__)
 def hello_world(name:str):
     return 'Welcome to the world!',name
 
-@app.post('/login')
+# 带参的登录，参数为name，返回name
+@app.route('/login/<name>')
 def login(name:str):
-    return 'Welcome to login!',name
+    return 'Hello, %s' % name
 
 
 if __name__ == "__main__":
