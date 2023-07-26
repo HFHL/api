@@ -1,19 +1,18 @@
 import os
 
-from fastapi import FastAPI
+from flask import Flask, request, jsonify
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
+@app.route("/")
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/hello/{name}")
-async def hello_name(name: str):
+# 传入姓名参数，并打印出来
+@app.route("/hello/<name>")
+def hello_name(name):
     return {"Hello": name}
 
 
-
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
