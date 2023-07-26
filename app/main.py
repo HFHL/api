@@ -5,10 +5,10 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return '欢迎使用微信云托管！'
+def hello_world(name):
+    return 'Welcome to the world!'+name
 
-# 登录验证
+
 
 
 if __name__ == "__main__":
