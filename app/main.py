@@ -13,7 +13,11 @@ def read_root():
 def info():
     import sys
     import pandas as pd
-    return {"system": sys.platform, "python": sys.version, "pandas": pd.__version__}
+    # 返回当前文件夹包含的文件，和目录结构
+    path = os.path.dirname(os.path.abspath(__file__))
+    files = os.listdir(path)
+    # 返回当前系统信息，以及python版本，pandas版本
+    return {"sys": sys.platform, "python": sys.version, "pandas": pd.__version__,"files":files}
 
 # 传入姓名参数，并打印出来
 @app.route("/hello/<name>")
