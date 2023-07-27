@@ -86,7 +86,7 @@ def fission_count(name):
             # fission_count 与每一条的邀请人数列相加
             fission_count += row['邀请人数']
     all_count = seed_count + fission_count
-    return {"seed count": seed_count, "fission count":fission_count,"all count":all_count,"result": result}
+    return {"seed_count": seed_count, "fission_count":fission_count,"all_count":all_count,"result": result}
     
 # 计算GMV
 @app.route("/gmv/<name>")
