@@ -8,6 +8,13 @@ app = Flask(__name__)
 def read_root():
     return {"Hello": "World"}
 
+# 返回当前系统信息，以及python版本，pandas版本
+@app.route("/info")
+def info():
+    import sys
+    import pandas as pd
+    return {"system": sys.platform, "python": sys.version, "pandas": pd.__version__}
+
 # 传入姓名参数，并打印出来
 @app.route("/hello/<name>")
 def hello_name(name):
