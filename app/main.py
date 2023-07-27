@@ -33,7 +33,7 @@ def seed_list(name):
     try:   
         import pandas as pd
         path = os.path.dirname(os.path.abspath(__file__))
-        df = pd.read_excel('list.xlsx')
+        df = pd.read_excel(path+'\\list.xlsx')
         # 遍历所有行，查询邀请人为name的用户，返回每一行的数据和统计总数，返回json格式
         count = 0
         result = []
@@ -43,9 +43,7 @@ def seed_list(name):
                 result.append(row.to_dict())
         return {"seed count": count, "seed list":result}
     except Exception as e:
-        return {"error": e}
-    
-    
+        return {"error": str(e)}
 
 
 
