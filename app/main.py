@@ -181,13 +181,17 @@ def clue_detail(name):
 # indexpage,种子用户数，裂变用户数，GMV，销量，下单用户数，线索用户数
 @app.route("/index/<name>")
 def index(name):
-    seed = seed_count(name)
-    fission = fission_count(name)
-    gmv_count = gmv(name)
-    sales_count = sales(name)
-    order_count = order(name)
-    clue = clue_user(name)
-    return {"seed": seed, "fission":fission,"gmv":gmv_count,"sales":sales_count,"order":order_count,"clue":clue}
+
+    try:
+        seed = seed_count(name)
+        fission = fission_count(name)
+        gmv_count = gmv(name)
+        sales_count = sales(name)
+        order_count = order(name)
+        clue = clue_user(name)
+        return {"seed": seed, "fission":fission,"gmv":gmv_count,"sales":sales_count,"order":order_count,"clue":clue}
+    except Exception as e:
+        return {"error": str(e)}
 
 
 if __name__ == "__main__":
