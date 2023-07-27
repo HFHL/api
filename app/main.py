@@ -39,14 +39,11 @@ def seed_list(name):
         count = 0
         result = []
 
-        
-        name = urllib.parse.unquote(name)
-
         for index, row in df.iterrows():
             if row['邀请人'] == name:
                 count += 1
                 result.append(row.to_dict())
-        return {"seed count": count, "seed list":result, "name1":name.encode('utf-8').decode('unicode_escape')}
+        return {"seed count": count, "seed list":result, "name1":name}
     except Exception as e:
         return {"error": str(e)}
 
