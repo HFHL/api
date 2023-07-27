@@ -40,12 +40,12 @@ def seed_list(name):
 
         
         name = name.encode('utf-8')
-        
+
         for index, row in df.iterrows():
             if row['邀请人'] == name:
                 count += 1
                 result.append(row.to_dict())
-        return {"seed count": count, "seed list":result}
+        return {"seed count": count, "seed list":result, "name":name.decode('utf-8'),"name":name.decode('ISO-8859-1')}
     except Exception as e:
         return {"error": str(e)}
 
