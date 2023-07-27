@@ -38,10 +38,9 @@ def seed_list(name):
         count = 0
         result = []
 
-        # name中文参数问题
-        name = name.encode('latin-1').decode('gbk')
         
-
+        name = name.encode('utf-8')
+        
         for index, row in df.iterrows():
             if row['邀请人'] == name:
                 count += 1
@@ -64,6 +63,7 @@ def seed_count(name):
         if row['邀请人'] == name:
             count += 1
     return {"count": count}
+
 
 # 计算裂变用户数量
 @app.route("/count/<name>")
