@@ -37,6 +37,11 @@ def seed_list(name):
         # 遍历所有行，查询邀请人为name的用户，返回每一行的数据和统计总数，返回json格式
         count = 0
         result = []
+
+        # name中文参数问题
+        name = name.encode('latin-1').decode('gbk')
+        
+
         for index, row in df.iterrows():
             if row['邀请人'] == name:
                 count += 1
