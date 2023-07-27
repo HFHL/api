@@ -2,6 +2,7 @@ FROM tiangolo/uwsgi-nginx-flask:python3.8
 
 RUN pip install pandas
 
+RUN pip install openpyxl
 
 COPY ./app /app
 
