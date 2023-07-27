@@ -46,7 +46,7 @@ def seed_list(name):
             if row['邀请人'] == name:
                 count += 1
                 result.append(row.to_dict())
-        return {"seed count": count, "seed list":result, "name1":name}
+        return {"seed count": count, "seed list":result, "name1":name.encode('utf-8').decode('unicode_escape')}
     except Exception as e:
         return {"error": str(e)}
 
