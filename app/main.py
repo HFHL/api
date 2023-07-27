@@ -17,6 +17,7 @@ def info():
     path = os.path.dirname(os.path.abspath(__file__))
     files = os.listdir(path)
     # 返回当前系统信息，以及python版本，pandas版本
+    
     return {"sys": sys.platform, "python": sys.version, "pandas": pd.__version__,"files":files}
 
 # 传入姓名参数，并打印出来
