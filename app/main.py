@@ -28,16 +28,24 @@ def hello_name(name):
 # 计算种子用户
 @app.route("/seed/<name>")
 def seed_list(name):
-    import pandas as pd
-    path = os.path.dirname(os.path.abspath(__file__))
-    df = pd.read_excel(path+'\\list.xlsx')
-    # 遍历所有行，查询邀请人为name的用户，返回每一行的群成员昵称列和统计总数，返回json格式
-    result = []
-    for index, row in df.iterrows():
-        if row['邀请人'] == name:
-            result.append(row["群成员昵称"])
-    #
-    return {"seed list": result}
+
+    # 捕捉异常
+    try:   
+        import pandas as pd
+        path = os.path.dirname(os.path.abspath(__file__))
+        df = pd.read_excel(path+'\\list.xlsx')
+        # 遍历所有行，查询邀请人为name的用户，返回每一行的数据和统计总数，返回json格式
+        count = 0
+        result = []
+        for index, row in df.iterrows():
+            if row['邀请人'] == name:
+                count += 1
+                result.append(row.to_dict())
+        return {"seed count": count, "seed list":result}
+    except Exception as e:
+        return {"error": e}
+    
+    
 
 
 
