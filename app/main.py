@@ -66,6 +66,7 @@ def seed_count(name):
 # 计算裂变用户数量
 @app.route("/count/<name>")
 def fission_count(name):
+    import pandas as pd
     path = os.path.dirname(os.path.abspath(__file__))
     df = pd.read_excel(path+'/list.xlsx')
     
@@ -90,6 +91,7 @@ def fission_count(name):
 # 计算GMV
 @app.route("/gmv/<name>")
 def gmv(name):
+    import pandas as pd
     sdlist = seed_list(name)
     # 将sdlist解构
     sdlist = sdlist["seed list"]
@@ -106,6 +108,7 @@ def gmv(name):
 # 统计销量
 @app.route("/sales/<name>")
 def sales(name):
+    import pandas as pd
     # 筛选出买家为name或者是种子用户的记录，并用交易状态为支付成功的记录个数-支付状态为已退款的记录个数
     sdlist = seed_list(name)
     # 将sdlist解构
@@ -128,6 +131,7 @@ def sales(name):
 # 下单用户数
 @app.route("/order/<name>")
 def order(name):
+    import pandas as pd
     sdlist = seed_list(name)
     # 将sdlist解构
     sdlist = sdlist["seed list"]
@@ -148,6 +152,7 @@ def order(name):
 # 线索用户
 @app.route("/clue/<name>")
 def clue_user(name):
+    import pandas as pd
     # 种子用户列表
     sdlist = seed_list(name)
 
@@ -167,6 +172,7 @@ def clue_user(name):
 # 线索细节
 @app.route("/clue_detail/<name>")
 def clue_detail(name):
+    import pandas as pd
     path = os.path.dirname(os.path.abspath(__file__))
     store = pd.read_csv(path+'/store_data.csv')
 
@@ -183,6 +189,7 @@ def clue_detail(name):
 def index(name):
 
     try:
+        import pandas as pd
         seed = seed_count(name)
         fission = fission_count(name)
         gmv_count = gmv(name)
@@ -195,5 +202,5 @@ def index(name):
 
 
 if __name__ == "__main__":
-    import pandas as pd
+    
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 80)))
