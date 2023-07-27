@@ -54,7 +54,7 @@ def seed_list(name):
 def seed_count(name):
     import pandas as pd
     path = os.path.dirname(os.path.abspath(__file__))
-    df = pd.read_excel(path+'\\list.xlsx')
+    df = pd.read_excel(path+'/list.xlsx')
     # 遍历所有行，查询邀请人为name的用户，返回统计总数，返回json格式
     count = 0
     for index, row in df.iterrows():
@@ -67,7 +67,7 @@ def seed_count(name):
 @app.route("/count/<name>")
 def fission_count(name):
     path = os.path.dirname(os.path.abspath(__file__))
-    df = pd.read_excel(path+'\\list.xlsx')
+    df = pd.read_excel(path+'/list.xlsx')
     
     # 匹配name等于群成员昵称列表的记录，
     # 遍历所有行，查询邀请人为name的用户，返回每一行的数据和统计总数，返回json格式
@@ -94,7 +94,7 @@ def gmv(name):
     # 将sdlist解构
     sdlist = sdlist["seed list"]
     path = os.path.dirname(os.path.abspath(__file__))
-    store = pd.read_csv(path+'\\store_data.csv')
+    store = pd.read_csv(path+'/store_data.csv')
 
     gmv = 0
     for index, row in store.iterrows():
@@ -111,7 +111,7 @@ def sales(name):
     # 将sdlist解构
     sdlist = sdlist["seed list"]
     path = os.path.dirname(os.path.abspath(__file__))
-    store = pd.read_csv(path+'\\store_data.csv')
+    store = pd.read_csv(path+'/store_data.csv')
 
     buyer = []
 
@@ -132,7 +132,7 @@ def order(name):
     # 将sdlist解构
     sdlist = sdlist["seed list"]
     path = os.path.dirname(os.path.abspath(__file__))
-    store = pd.read_csv(path+'\\store_data.csv')
+    store = pd.read_csv(path+'/store_data.csv')
 
     buyer = []
 
@@ -154,7 +154,7 @@ def clue_user(name):
     # 将sdlist解构
     sdlist = sdlist["seed list"]
     path = os.path.dirname(os.path.abspath(__file__))
-    store = pd.read_csv(path+'\\store_data.csv')
+    store = pd.read_csv(path+'/store_data.csv')
 
     # 筛选出买家在种子用户列表中的记录，不反悔买家为name的记录，不反悔交易状态为支付成功的记录，返回买家和联系电话和交易状态
     buyer = []
@@ -168,7 +168,7 @@ def clue_user(name):
 @app.route("/clue_detail/<name>")
 def clue_detail(name):
     path = os.path.dirname(os.path.abspath(__file__))
-    store = pd.read_csv(path+'\\store_data.csv')
+    store = pd.read_csv(path+'/store_data.csv')
 
     # 筛选出买家为name且交易状态不为支付成功的记录，返回交易状态和全部产品名称
     detail = []
