@@ -91,9 +91,9 @@ def fission_count(name):
 @app.route("/gmv/<name>")
 def gmv(name):
     import pandas as pd
-    sdlist = seed_list(name)
+    sdlist = seed_list(name)["seed_list"]
     # 将sdlist解构
-    
+    print(sdlist)
     path = os.path.dirname(os.path.abspath(__file__))
     store = pd.read_csv(path+'/store_data.csv')
 
@@ -124,7 +124,7 @@ def sales(name):
             sales += 1
         if row["交易状态"] == "已退款" and (row['买家'] == name or row['买家'] in sdlist):
             sales -= 1
-    
+
     return {"sales": sales}
 
 # 下单用户数
@@ -142,10 +142,10 @@ def order(name):
     for index, row in store.iterrows():
         if row["交易状态"] == "支付成功" and (row['买家'] == name or row['买家'] in sdlist):
             buyer.append(row['买家'])
-    
+
     # 去重
     buyer = list(set(buyer))
-    
+
     return {"order": len(buyer)}
     
 # 线索用户
@@ -158,7 +158,6 @@ def clue_user(name):
     # 将sdlist解构
     # 将sdlist去重后转为列表
 
-    
 
     sdlist = [item for item in sdlist['seed_list']]
     print(sdlist)
@@ -195,7 +194,7 @@ def clue_detail(name):
 # indexpage,种子用户数，裂变用户数，GMV，销量，下单用户数，线索用户数
 @app.route("/index/<name>")
 def index(name):
-
+    
     try:
         import pandas as pd
         seed_user_list = seed_list(name)
