@@ -194,7 +194,6 @@ def clue_detail(name):
 # indexpage,种子用户数，裂变用户数，GMV，销量，下单用户数，线索用户数
 @app.route("/index/<name>")
 def index(name):
-    
     try:
         import pandas as pd
         seed_user_list = seed_list(name)
